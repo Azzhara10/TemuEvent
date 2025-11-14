@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Profil - TemuEvent</title>
+  <link rel="icon" type="image/x-icon" href="img/favicon.png">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* Sidebar / header profil */
+    .sidebar {
+      background-color: #f8f9fa;
+      padding: 20px;
+      text-align: center;
+    }
+    .profile-pic {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 15px;
+      border: 3px solid #0d6efd;
+    }
+    .sidebar h4 {
+      margin-bottom: 15px;
+    }
+
+    /* Responsive layout */
+    @media(min-width: 768px) {
+      .sidebar {
+        min-height: 100vh;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container-fluid">
+  <div class="row flex-column flex-md-row">
+    
+    <!-- Sidebar / header profil -->
+    <div class="col-md-3 sidebar d-flex flex-column align-items-center">
+      <h4>TemuEvent</h4>
+      <img id="profileFotoSidebar" src="https://via.placeholder.com/150" alt="Foto Profil" class="profile-pic">
+      <h5 id="sidebarNama">Nama User</h5>
+      <a href="profil.html" class="btn btn-primary mt-2 w-75">Profil</a>
+    </div>
+
+    <!-- Konten utama -->
+    <div class="col-md-9">
+      <div class="container mt-4 mt-md-5">
+        <div class="card mx-auto" style="max-width:600px;">
+          <div class="card-body">
+            <h3 class="card-title">Profil Pengguna</h3>
+            <p class="text-muted">Informasi akun Anda</p>
+
+            <table class="table table-borderless">
+              <tbody>
+                <tr>
+                  <th>Nama</th>
+                  <td id="namaPengguna">-</td>
+                </tr>
+                <tr>
+                  <th>Email</th>
+                  <td id="emailPengguna">-</td>
+                </tr>
+                <tr>
+                  <th>Kota</th>
+                  <td id="kotaPengguna">-</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <div class="d-flex justify-content-end gap-2">
+              <a href="edit-profil.html" class="btn btn-primary">Edit Profil</a>
+              <button id="logoutBtn" class="btn btn-outline-danger">Logout</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script src="js/auth.js"></script>
+<script>
+  function getLoggedInUserLocal() {
+    try {
+      return JSON.parse(localStorage.getItem('loggedInUser'));
+    } catch(e) {
+      return null;
+    }
+  }
+
+  function showProfile() {
+    const user = getLoggedInUserLocal();
+    if(!user){
+      alert('Silakan login terlebih dahulu.');
+      window.location.href = 'login.html';
+      return;
+    }
+
+    // Konten utama
+    document.getElementById('namaPengguna').textContent = user.name || 'Nama belum diisi';
+    document.getElementById('emailPengguna').textContent = user.email || 'Email belum diisi';
+    document.getElementById('kotaPengguna').textContent = user.kota || 'Makassar';
+
+    // Sidebar
+    document.getElementById('sidebarNama').textContent = user.name || 'Nama User';
+    if(user.foto){
+      document.getElementById('profileFotoSidebar').src = user.foto;
+    }
+
+    // Logout
+    const logoutBtn = document.getElementById('logoutBtn');
+    logoutBtn.addEventListener('click', function() {
+      localStorage.removeItem('loggedInUser');
+      alert('Anda telah logout.');
+      window.location.href = 'index.html';
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', showProfile);
+</script>
+
+</body>
+</html>

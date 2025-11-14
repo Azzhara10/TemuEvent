@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pesan EO - TemuEvent</title>
+  <link rel="icon" type="image/x-icon" href="img/favicon.png">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Navbar sederhana -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="index.html">TemuEvent</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Beranda</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="pesan-eo.html">Pesan EO</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="profil.html">Profil</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Form Pemesanan EO -->
+  <div class="container mt-5" style="max-width:500px;">
+    <h2 class="text-center mb-4">Form Pemesanan EO</h2>
+
+    <form id="pesanEOForm">
+      <div class="mb-3">
+        <label class="form-label">Nama EO</label>
+        <input type="text" id="eoName" class="form-control" readonly>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Nama Event</label>
+        <input type="text" id="eventName" class="form-control" required>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Tanggal Event</label>
+        <input type="date" id="eventDate" class="form-control" required>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Jumlah Peserta</label>
+        <input type="number" id="participants" class="form-control" required>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Estimasi Harga EO (Rp)</label>
+        <input type="number" id="price" class="form-control" required>
+      </div>
+      <button type="submit" class="btn btn-primary w-100">Pesan EO</button>
+    </form>
+  </div>
+
+  <script>
+    // ambil id EO dari URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const eoId = urlParams.get("id");
+
+    // ambil data EO default + EO yang ditambahkan user
+    const eoDataDefault = [
+      { id: 1, name: "DADPRO Event Organizer" },
+      { id: 2, name: "Persuasif Indonesia Event Organizer" },
+      { id: 3, name: "Zettacom" },
+      { id: 4, name: "Loon Art Event & Wedding Organizer" },
+      { id: 5, name: "Double Helix Event Organizer" },
+      { id: 6, name: "Dee Management" },
+      { id: 7, name: "CV Rachmat Event & Dekor" },
+      { id: 8, name: "Sangjuara Organizer" },
+      { id: 9, name: "Sarjannah Eventpro" }
+    ];
+
+    const userEO = JSON.parse(localStorage.getItem("userEO")) || [];
+    const allEO = [...eoDataDefault, ...userEO];
+    const eo = allEO.find(e => e.id == eoId);
+
+    // tampilkan nama EO di input readonly
+    document.getElementById("eoName").value = eo ? eo.name : "EO tidak ditemukan";
+
+    // submit form
+    document.getElementById("pesanEOForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const order = {
+        id: Date.now(),
+        eoId: eo.id,
+        eoName: eo.name,
+        eventName: document.getElementById("eventName").value,
+        eventDate: document.getElementById("eventDate").value,
+        participants: Number(document.getElementById("participants").value),
+        price: Number(document.getElementById("price").value),
+        fee: Number(document.getElementById("price").value) * 0.1 // 10% fee
+      };
+
+      // simpan ke localStorage
+      let orders = JSON.parse(localStorage.getItem("orders")) || [];
+      orders.push(order);
+      localStorage.setItem("orders", JSON.stringify(orders));
+
+      alert(`Pemesanan berhasil!\nFee Anda: Rp ${order.fee.toLocaleString('id-ID')}`);
+      window.location.href = "index.html";
+    });
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

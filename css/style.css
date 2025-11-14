@@ -1,0 +1,193 @@
+/* === LOGIN PAGE AESTHETIC (LIGHT MODE SOFT) === */
+
+.login-page {
+    background: linear-gradient(135deg, #fef8f3, #f3f1ff);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+/* Card container */
+.login-container {
+    width: 100%;
+    max-width: 420px;
+    padding: 35px 30px;
+    border-radius: 22px;
+
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(20px);
+
+    border: 1px solid rgba(200, 200, 200, 0.4);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+
+    transition: 0.3s ease;
+}
+
+.login-container:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.12);
+}
+
+/* Title */
+.login-title {
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 28px;
+
+    color: #444;
+}
+
+/* Labels */
+.login-container .form-label {
+    font-weight: 600;
+    color: #555;
+}
+
+/* Inputs */
+.login-container input {
+    border-radius: 14px;
+    padding: 12px 14px;
+
+    background: #fafafa;
+    border: 1px solid #e5e5e5;
+
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.06);
+    transition: 0.25s ease;
+}
+
+.login-container input:focus {
+    background: white;
+    border-color: #a8b4ff; 
+    box-shadow: 0 0 0 3px rgba(164, 172, 255, 0.4);
+    outline: none;
+}
+
+/* Button */
+.login-btn {
+    border-radius: 14px;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: 700;
+
+    background: linear-gradient(135deg, #ffb6d5, #b49bff);
+    border: none;
+
+    color: white;
+    transition: 0.3s ease;
+}
+
+.login-btn:hover {
+    opacity: 0.93;
+    transform: scale(1.03);
+}
+
+/* Bottom link */
+.login-container p {
+    color: #666;
+}
+
+.login-container p a {
+    text-decoration: none;
+    font-weight: 600;
+    color: #b08bff;
+}
+
+.login-container p a:hover {
+    text-decoration: underline;
+}
+
+
+
+
+/* === AESTHETIC REGISTER PAGE === */
+
+/* Background gradient aesthetic */
+body {
+    background: linear-gradient(135deg, #fce7f3, #e0f2fe);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+/* Card Glassmorphism */
+.register-container {
+    width: 100%;
+    max-width: 420px;
+    padding: 35px 30px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.55);
+    backdrop-filter: blur(14px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+    transition: 0.3s ease;
+}
+
+.register-container:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 25px 50px rgba(0,0,0,0.10);
+}
+
+/* Title aesthetic */
+.register-title {
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 28px;
+    color: #3b3b3b;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+/* Labels */
+.form-label {
+    font-weight: 600;
+    color: #555;
+}
+
+/* Input style */
+.register-container input {
+    border-radius: 14px;
+    padding: 12px 14px;
+    border: none;
+    background: rgba(255,255,255,0.8);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    transition: 0.25s ease;
+}
+
+.register-container input:focus {
+    outline: none;
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(147, 197, 253, 0.45);
+}
+
+/* Button aesthetic */
+.register-btn {
+    border-radius: 14px;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: 700;
+    background: linear-gradient(135deg, #60a5fa, #818cf8);
+    border: none;
+    transition: 0.3s ease;
+}
+
+.register-btn:hover {
+    opacity: 0.9;
+    transform: scale(1.02);
+}
+
+/* Link bawah */
+.register-container p {
+    color: #444;
+}
+
+.register-container p a {
+    text-decoration: none;
+    font-weight: 600;
+    color: #3b82f6;
+}
+
+
